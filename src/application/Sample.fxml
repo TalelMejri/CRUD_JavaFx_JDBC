@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+	
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+	<top>
+	<GridPane hgap="20" vgap="20" >
+	<padding>
+	  <Insets top="20" left="20" right="20" bottom="20"></Insets>
+	</padding>
+	        <Label  fx:id="error" GridPane.rowIndex="0" GridPane.columnIndex="1"></Label>
+	     <Label  text="Nom" GridPane.rowIndex="1" GridPane.columnIndex="0"></Label>
+	     <TextField fx:id="nom"  promptText="Nom" GridPane.rowIndex="1" GridPane.columnIndex="1"></TextField>
+	    
+	     <Label  text="Prenom" GridPane.rowIndex="2" GridPane.columnIndex="0"></Label>
+	     <TextField fx:id="prenom"   promptText="Prenom" GridPane.rowIndex="2" GridPane.columnIndex="1"></TextField>
+	    
+	     <Label  text="email" GridPane.rowIndex="3" GridPane.columnIndex="0"></Label>
+	     <TextField  fx:id="email"  promptText="email" GridPane.rowIndex="3" GridPane.columnIndex="1"></TextField>
+	     
+	     <Label  text="Classe" GridPane.rowIndex="4" GridPane.columnIndex="0"></Label>
+	     <ComboBox fx:id="ListClasses" promptText="chose Classe" GridPane.rowIndex="4" GridPane.columnIndex="1"></ComboBox>
+	     
+	      <Label  text="Sex" GridPane.rowIndex="5" GridPane.columnIndex="0"></Label>
+	      <RadioButton fx:id="man" text="Man"  GridPane.rowIndex="5" GridPane.columnIndex="1">
+	      		<toggleGroup>
+	      			<ToggleGroup fx:id="sexe"></ToggleGroup>
+	      		</toggleGroup>
+	      </RadioButton>
+	      <RadioButton fx:id="women" text="Women" toggleGroup="$sexe" GridPane.rowIndex="5" GridPane.columnIndex="2"></RadioButton>
+			
+	     <Label  text="Ville" GridPane.rowIndex="6" GridPane.columnIndex="0"></Label>
+	     <ComboBox fx:id="ListVilles" promptText="chose Ville" GridPane.rowIndex="6" GridPane.columnIndex="1"></ComboBox>
+	     
+	     <Label  text="Role" GridPane.rowIndex="7" GridPane.columnIndex="0"></Label>
+	     <ComboBox fx:id="listRoles" promptText="chose Role" GridPane.rowIndex="7" GridPane.columnIndex="1"></ComboBox>
+	     
+		  <Button  text="Submit" GridPane.rowIndex="8" GridPane.columnIndex="0" onAction="#AddUser"></Button>
+		  <Button  text="Delete" GridPane.rowIndex="8" GridPane.columnIndex="1" onAction="#deleteUser"></Button>
+		   <Button  text="Update Active" GridPane.rowIndex="8" GridPane.columnIndex="2" onAction="#updateActive"></Button>
+	</GridPane>
+	</top>
+	<bottom>
+		<TableView fx:id="tabUser" GridPane.rowIndex="9" GridPane.columnIndex="0" >
+		  <columns>
+		  	 <TableColumn text="id">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="id"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	  <TableColumn text="nom">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="nom"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	  <TableColumn text="prenom">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="prenom"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	 <TableColumn text="email">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="email"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	  <TableColumn text="Sexe">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="Sexe"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	 <TableColumn text="ville">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="ville"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	  <TableColumn text="classe">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="classe"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  	  <TableColumn text="active">
+		  	 		<cellValueFactory>
+		  	 			<PropertyValueFactory property="active"></PropertyValueFactory>
+		  	 		</cellValueFactory>
+		  	 </TableColumn>
+		  </columns>
+		</TableView>
+	</bottom>
+</BorderPane>
