@@ -45,14 +45,16 @@
 	     
 	     <Label  text="Role" GridPane.rowIndex="7" GridPane.columnIndex="0"></Label>
 	     <ComboBox fx:id="listRoles" promptText="chose Role" GridPane.rowIndex="7" GridPane.columnIndex="1"></ComboBox>
-	     
-		  <Button  text="Submit" GridPane.rowIndex="8" GridPane.columnIndex="0" onAction="#AddUser"></Button>
-		  <Button  text="Delete" GridPane.rowIndex="8" GridPane.columnIndex="1" onAction="#deleteUser"></Button>
+	      
+		   <Button  text="Submit" GridPane.rowIndex="8" GridPane.columnIndex="0" onAction="#AddUser"></Button>
+		   <Button  text="Delete" GridPane.rowIndex="8" GridPane.columnIndex="1" onAction="#deleteUser"></Button>
 		   <Button  text="Update Active" GridPane.rowIndex="8" GridPane.columnIndex="2" onAction="#updateActive"></Button>
+		     <TextField  promptText="Search User By Name" fx:id="search" onKeyTyped="#searchByName" GridPane.rowIndex="9" GridPane.columnIndex="0"></TextField>
 	</GridPane>
 	</top>
 	<bottom>
-		<TableView fx:id="tabUser" GridPane.rowIndex="9" GridPane.columnIndex="0" >
+	 
+		<TableView fx:id="tabUser" GridPane.rowIndex="10" GridPane.columnIndex="0" >
 		  <columns>
 		  	 <TableColumn text="id">
 		  	 		<cellValueFactory>

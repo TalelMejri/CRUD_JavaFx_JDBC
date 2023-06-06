@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +26,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class SampleController implements Initializable {
-	
+	@FXML
+	TextField search;
 	@FXML
 	ComboBox<String> ListClasses;
 	@FXML
@@ -208,6 +211,43 @@ public class SampleController implements Initializable {
 			prep.executeUpdate();
 			this.Affiche();
 		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void searchByName(){
+		String reqSearch="select * from user where nom like ?";
+		String reqName1="SELECT * from role where id=?";
+		try {
+			PreparedStatement prep=this.conn.prepareStatement(reqSearch);
+			prep.setString(1, search.getText());
+			ResultSet resultatSearch=prep.executeQuery();
+			/*while(resultatSearch.next()) {
+				System.out.println(resultatSearch.getString("nom"));
+			}*/
+			/*ResultSetMetaData resmdr=(ResultSetMetaData) resultatSearch.getMetaData();
+			int column_count=resmdr.getColumnCount();*/
+			//System.out.println(resultatSearch.getFetchSize());
+			//if(resultatSearch.getFetchSize()>0) {
+				this.tabUser.getItems().clear();
+				while(resultatSearch.next()) {
+					String role="";
+					PreparedStatement prepName=this.conn.prepareStatement(reqName1);
+					prepName.setInt(1, resultatSearch.getInt(8));
+					ResultSet resOfRole=prepName.executeQuery();
+					String role_name="";
+					while(resOfRole.next()) {
+						role_name=resOfRole.getString(2);
+					}
+					User user=new User(resultatSearch.getInt(1), resultatSearch.getString(2), resultatSearch.getString(3), resultatSearch.getString(4), resultatSearch.getString(6), resultatSearch.getString(7), resultatSearch.getString(5),resultatSearch.getBoolean(9) ? "Active" : "Not Yet");
+					users.add(user);
+				}
+				tabUser.setItems(users);
+				if(search.getText().length()==0) {
+					this.Affiche();
+				}
+			//}
+		}catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
